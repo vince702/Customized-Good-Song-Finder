@@ -1,0 +1,18 @@
+#!/bin/sh
+
+dir=$1
+
+RESULT=`ls $dir | sort | grep '\.*.mp3'`
+
+for k in $RESULT
+do
+ filename=$(basename "$k") 
+ wavName=`echo $k | sed 's/\.mp3/\.wav/g'`
+ ffmpeg -i $k $wavName
+done
+
+
+
+
+
+
