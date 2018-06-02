@@ -1,0 +1,25 @@
+#!/bin/bash                                                                     
+IFS=$'\n'
+RESULT=`find ~/Music/iTunes -name "*.mp3" > songs.txt`
+
+SONGLIST=`cat songs.txt`
+mkdir songs
+currentdir=`pwd`
+songdir=$currentdir/songs
+
+for k in $SONGLIST
+do
+ cp $k $songdir
+done
+
+RESULT=`find ~/Music/iTunes -name "*.m4a" > songsm4a.txt`
+
+SONGLIST=`cat songsm4a.txt`
+for k in $SONGLIST
+do
+ cp $k $songdir
+done
+
+
+
+echo $k
