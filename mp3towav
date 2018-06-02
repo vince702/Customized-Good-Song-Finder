@@ -1,4 +1,5 @@
 #!/bin/sh
+IFS=$'\n'
 
 dir=$1
 
@@ -8,11 +9,18 @@ for k in $RESULT
 do
  filename=$(basename "$k") 
  wavName=`echo $k | sed 's/\.mp3/\.wav/g'`
- ffmpeg -i $k $wavName
+ ffmpeg -i songs/$k songs/$wavName
+ rm songs/$k
 done
 
+RESULT=`ls $dir | sort | grep '\.*.m4a'`
 
-
-
+for k in $RESULT
+do
+ filename=$(basename "$k")
+ wavName=`echo $k | sed 's/\.m4a/\.wav/g'`
+ ffmpeg -i songs/$k songs/$wavName
+ rm songs/$k
+done
 
 
